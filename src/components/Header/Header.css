@@ -1,0 +1,35 @@
+ul {
+    background-color: orange;
+    padding: 10px 0;
+}
+
+ul li a {
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+ul li a:hover {
+    background-color: #198754;
+}
+
+.active {
+    background-color: #198754;
+}
+
+.input-search:focus+.btn-submit {
+    background-color: #198754;
+    color: #fff;
+}
+
+
+.btn-cart {
+    text-decoration: none;
+    padding: 10px;
+    color: white;
+    margin-right: 10px;
+}
+
+.btn-cart:hover {
+    background-color: #198754;
+}

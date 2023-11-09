@@ -1,0 +1,46 @@
+.main {
+    background: linear-gradient(to right, #a8ff78, #78ffd6);
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.main .row {
+    max-height: 500px;
+    border: 1px solid black;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 5px 5px 5px black;
+    padding: 0;
+}
+
+.main .left-side {
+    padding: 0;
+}
+
+.left-side img {
+    max-width: 500px;
+}
+
+/* .card-productByCategory {
+    box-shadow: 2px 2px 2px black;
+    /* padding: 0;
+    margin: 5px; */
+/* } */
+
+/* .card-image {
+    overflow: hidden;
+} */
+
+.card-image:hover {
+    scale: 1.1;
+    transition: 0.5s;
+
+}
+
+.product-name {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}

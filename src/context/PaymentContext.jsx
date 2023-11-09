@@ -9,19 +9,27 @@ export const PaymentProvider = ({ children }) => {
     const [name, setname] = useState("")
     const [phone, setphone] = useState("")
     const [address, setaddress] = useState("")
-    const [diachi, setdiachi] = useState(false);
-    const [isOpenModelDiaChi, setIsOpenModalDiaChi] = useState(false)
+    const [ListAddress, setListAddress] = useState([]);
+    const [isOpenModalAddress, setIsOpenModalAddress] = useState(ListAddress.length == 0 ? true : false)
     const handelAddDiachi = () => {
-        setdiachi({ name: name, phone: phone, address: address })
-    }
-    const handelPayment = () => {
-        if (diachi === false) {
-            setIsOpenModalDiaChi(true);
+        let newAddress = {}
+        if (ListAddress.length == 0) {
+            newAddress = { name: name, phone: phone, address: address, active: true }
         }
         else {
-
+            newAddress = { name: name, phone: phone, address: address, active: false }
+        }
+        setListAddress([...ListAddress, newAddress]);
+    }
+    const handelPayment = () => {
+        if (ListAddress.length == 0) {
+            setIsOpenModalAddress(true);
+        }
+        else {
+            const orderdate = new Date().toLocaleString;
+            const address = ListAddress.find((item) => item.active == true);
             const id = payment.length;
-            const newPayment = { id: id, donhang: [...cart], diachi: diachi };
+            const newPayment = { id: id, donhang: [...cart], address: address, orderDate: orderdate };
             removeCart();
             setPayment([...payment, newPayment]);
         }
@@ -31,8 +39,8 @@ export const PaymentProvider = ({ children }) => {
     }, [payment])
     return (
         <PaymentContext.Provider value={{
-            payment, handelPayment, setdiachi, isOpenModelDiaChi,
-            setIsOpenModalDiaChi, handelAddDiachi, setphone, setname, setaddress
+            payment, handelPayment, isOpenModalAddress,
+            setIsOpenModalAddress, handelAddDiachi, setphone, setname, setaddress
         }}>
             {children}
         </PaymentContext.Provider>

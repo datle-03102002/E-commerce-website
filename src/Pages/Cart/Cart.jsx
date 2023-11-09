@@ -1,31 +1,22 @@
 import React, { useContext, useState } from "react";
-import { CartContext } from "../context/CartContext";
+import { CartContext } from "../../context/CartContext";
 import { FaPlus, FaMinus, FaTrash } from "react-icons/fa";
 import { Modal, Button } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { PaymentContext } from "../context/PaymentContext";
-
 const Cart = () => {
     const { cart, removeCart, handelDeleteAProduct, handelPlus,
-        handelMinus, handelOnchange } = useContext(CartContext);
-
-    const { handelPayment, isOpenModelDiaChi, setIsOpenModalDiaChi,
-        handelAddDiachi, setphone, setname, setaddress } = useContext(PaymentContext);
-
+        handelMinus, handelOnchange } = useContext(CartContext)
     const [isOpenModal, setIsOpenModal] = useState(false);
 
     const total = cart.reduce((tong, currenvalue) => {
         return tong + (currenvalue.price * currenvalue.soluong);
     }, 0);
-
-
     return (
-
         cart && cart.length > 0 ?
-
             (
                 <div className="container mt-3">
+                    { }
                     <Modal show={isOpenModal} onHide={() => setIsOpenModal(false)}>
                         <Modal.Header>
                             Thông báo
@@ -34,7 +25,7 @@ const Cart = () => {
                             Bạn có muốn xóa toàn bộ sản phẩm không?
                         </Modal.Body>
                         <Modal.Footer>
-                            <button className="btn btn-primary" onClick={() => removeCart()}>
+                            <button className="btn btn-danger" onClick={() => removeCart()}>
                                 Có
                             </button>
                             <button className="btn btn-secondary" onClick={() => setIsOpenModal(false)}>
@@ -42,7 +33,7 @@ const Cart = () => {
                             </button>
                         </Modal.Footer>
                     </Modal>
-                    <button type="button" className="btn btn-outline-dark d-flex align-middle align-items-center" onClick={() => setIsOpenModal(true)}>
+                    <button type="button" className="btn btn-outline-danger d-flex align-middle align-items-center" onClick={() => setIsOpenModal(true)}>
                         <FaTrash className="mx-1" /> Xóa giỏ hàng
                     </button>
                     <table className="table" >
@@ -99,26 +90,20 @@ const Cart = () => {
                         </tbody >
                         <ToastContainer autoClose={2000} pauseOnHover={false}></ToastContainer>
                     </table>
-                    <Modal show={isOpenModelDiaChi} onHide={() => setIsOpenModalDiaChi(false)}>
-                        <Modal.Header>Vui lòng nhập địa chỉ</Modal.Header>
-                        <Modal.Body>
-                            Họ tên: <input className="form-control mr-sm-2" type="text" name="name" onChange={(e) => setname(e.target.value)} />
-                            Số điện thoại: <input className="form-control mr-sm-2" type="text" name="phone" onChange={(e) => setphone(e.target.value)}></input>
-                            Địa chỉ: <input className="form-control mr-sm-2" type="text" name="address" onChange={(e) => setaddress(e.target.value)}></input>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <button className="btn btn-primary" onClick={() => {
-                                handelAddDiachi();
-                                setIsOpenModalDiaChi(false);
-                            }}>
-                                Ok
-                            </button>
-                            <button className="btn btn-secondary" onClick={() => setIsOpenModalDiaChi(false)}>
-                                Cancel
-                            </button>
-                        </Modal.Footer>
-                    </Modal>
-                    <Button onClick={() => handelPayment()}>Thanh toán</Button>
+
+                    <div className="d-flex justify-content-end">
+                        <Button className="mx-3 btn-danger" >
+                            <a className="text-white text-decoration-none " href="/cart/checkout">
+                                Thanh toán
+                                {/* onClick={() => handelPayment()} */}
+                            </a>
+                        </Button>
+                        <Button className="btn-danger" >
+                            <a className="text-white text-decoration-none " href="/customer/order">
+                                Xem các đơn hàng đã mua
+                            </a>
+                        </Button>
+                    </div>
                 </div>) : <p>Không có sản phẩm nào trong giỏ hàng</p>
 
     );

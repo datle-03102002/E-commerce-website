@@ -18,7 +18,7 @@ export const CartProvider = ({ children }) => {
         setcart(newCart);
     }
     // tang so luong 
-    const handelPlus = (product) => {
+    const Increase = (product) => {
         const newCart = [...cart].map((item) => {
             if (item.id === product.id) {
                 return { ...item, soluong: item.soluong + 1 }
@@ -29,7 +29,7 @@ export const CartProvider = ({ children }) => {
         })
         setcart(newCart);
     }
-    const handelMinus = (product) => {
+    const recrease = (product) => {
 
         const newCart = [...cart].map((item, index) => {
             if (item.id === product.id) {
@@ -47,7 +47,7 @@ export const CartProvider = ({ children }) => {
         setcart(newCart);
     }
 
-    const handelDeleteAProduct = (product) => {
+    const RemoveItemInCart = (product) => {
         const newCart = [...cart].filter((item) => item.id !== product.id);
         toast.success("Xóa sản phẩm thành công")
         setcart(newCart);
@@ -90,7 +90,7 @@ export const CartProvider = ({ children }) => {
     }, [cart])
     // console.log(cart);
     return (
-        <CartContext.Provider value={{ addToCart, removeCart, handelDeleteAProduct, cart, handelMinus, handelPlus, handelOnchange }}>
+        <CartContext.Provider value={{ addToCart, removeCart, RemoveItemInCart, cart, recrease, Increase, handelOnchange }}>
             {children}
         </CartContext.Provider>
     )

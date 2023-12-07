@@ -4,18 +4,19 @@ import "./Products.css"
 import { CartContext } from "../../context/CartContext";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { FaCartPlus } from "react-icons/fa"
 const Products = () => {
     const products = useContext(ProductsContext)
     const { addToCart } = useContext(CartContext)
     return (
         <>
-            <div className="container px-4 px-lg-5 mt-5">
-                <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center pt-5" style={{ background: "linear-gradient(to right, #a8ff78, #78ffd6)" }}>
+            <div className="container-fluid px-4 px-lg-5 mt-4">
+                <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center pt-5" >
                     {products.map((item) => {
                         return (
-                            <div className="col mb-5 shadow-sm">
+                            <div className="col-md-3 mb-5 shadow-sm">
                                 <div className="card h-100 overflow-hidden">
-                                    <a href={`/product/${item.id}`} className="card-link">
+                                    <a href={`/product/${item.id}`} className="card-link glightbox">
                                         <img src={item.image} alt="" className="card-img-top w-100 card-image" style={{ height: "200px" }} />
                                     </a>
                                     <div className="card-body p-1 text-center " style={{ height: "120px" }}>
@@ -33,7 +34,7 @@ const Products = () => {
                                     </div>
                                     <div className="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
                                         <button className="btn btn-outline-dark btn-addToCart" onClick={() => addToCart(item)}>
-                                            Thêm vào giỏ hàng
+                                            <FaCartPlus className="mx-1" />Thêm vào giỏ hàng
                                         </button>
                                     </div>
                                 </div>

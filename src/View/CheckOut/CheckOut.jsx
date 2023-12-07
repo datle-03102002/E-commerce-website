@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { PaymentContext } from "../../context/PaymentContext";
+// import { PaymentContext } from "../../context/PaymentContext";
 const CheckOut = () => {
-    const { handelPayment, isOpenModalAddress, setIsOpenModalAddress,
-        handelAddDiachi, setphone, setname, setaddress } = useContext(PaymentContext);
+    // const { handelPayment, isOpenModalAddress, setIsOpenModalAddress,
+    //     handelAddDiachi, setphone, setname, setaddress } = useContext(PaymentContext);
     return (
         <form>
             <label>Thông tin giao hàng</label>

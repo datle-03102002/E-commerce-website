@@ -1,27 +1,40 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import "./Header.css"
-const Header = () => {
-    return (
-        <ul className="nav align-items-center justify-content-between">
-            <div className="d-flex">
-                <li className="nav-item m-1">
-                    <NavLink to="/">Home</NavLink>
-                </li>
-                <li className="nav-item m-1">
-                    <NavLink to="/Contact">Contact</NavLink>
-                </li>
-                <li className="nav-item m-1">
-                    <NavLink to="/Login">Login</NavLink>
-                </li>
-            </div>
-            <form className="form-inline d-flex my-2 my-lg-0 w-50">
-                <input className="form-control mr-sm-2 input-search" type="search" placeholder="Search" aria-label="Search" />
-                <button className="btn btn-outline-success my-2 my-sm-0 mx-3 btn-submit" type="submit">Search</button>
-                <NavLink className="btn-cart" to="/Cart">Cart</NavLink>
-            </form>
+import { FaSearch, FaShoppingCart } from "react-icons/fa"
+import { CartContext } from "../../context/CartContext";
 
-        </ul>
+const Header = () => {
+    const { cart } = useContext(CartContext);
+    return (
+        <header className="pt-2">
+            <div className="container-fluid">
+                <div className="container-xl">
+                    <div className="row header d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                        <div className="col-4 header__logo"><img src="" /></div>
+                        <div className="col-4 header__search align-middle">
+                            <form role="search" action="search" method="GET" className="input-group px-2 pe-lg-0" name="frmSearch" id="frmSearch">
+                                <input className="form-control " type="search" name="txtKeyword" id="txtKeyword" placeholder="Tìm kiếm" />
+                                <button className="btn btn-primary" type="submit"><FaSearch /></button>
+                            </form>
+                        </div>
+                        <div className="col-4 text-end ">
+                            <div className="row">
+                                <div className="col-lg-4"></div>
+                                <div className="col-lg-4 text-end d-flex flex-wrap align-items-center  justify-content-lg-end">
+                                    <a href="/cart" className="position-relative fs-2 ">
+                                        <FaShoppingCart />
+                                        {/* {cart && cart.length > 0 &&
+                                            <div className="position-absolute" >{cart.length}</div>
+                                        } */}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header >
+
     );
 }
 export default Header;

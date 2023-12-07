@@ -5,16 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ProductProvider } from './context/ProductsContext';
 import { CartProvider } from './context/CartContext';
-import { PaymentProvider } from './context/PaymentContext';
+// import { PaymentProvider } from './context/PaymentContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <CartProvider>
-      <PaymentProvider>
-        <ProductProvider>
-          <App />
-        </ProductProvider>
-      </PaymentProvider>
+      {/* <PaymentProvider> */}
+      <ProductProvider>
+        <App />
+      </ProductProvider>
+      {/* </PaymentProvider> */}
     </CartProvider>
   </React.StrictMode>
 );
